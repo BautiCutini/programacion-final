@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- TABLA: categorias
 -- Cada usuario puede tener sus propias categorías.
--- tipo: 'ingreso' o 'gasto'
+-- tipo: 'ingreso' o 'gasto' 
 
 CREATE TABLE IF NOT EXISTS categorias (
   id            SERIAL PRIMARY KEY,
