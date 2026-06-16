@@ -22,8 +22,12 @@ const sequelize = new Sequelize(
 const UserModel = require('./User');
 const User = UserModel(sequelize);
 
+const CategoriaModel = require('./Categoria');
+const Categoria = CategoriaModel(sequelize);
+
 module.exports = {
   sequelize,
   Sequelize,
-  User
+  User,
+  Categoria
 };
