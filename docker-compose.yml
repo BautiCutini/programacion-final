@@ -8,9 +8,9 @@ services:
     container_name: app_database
     restart: unless-stopped
     environment:
-      POSTGRES_DB: app_database
-      POSTGRES_USER: app_user
-      POSTGRES_PASSWORD: app_password
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
@@ -32,15 +32,15 @@ services:
     container_name: app_backend
     restart: unless-stopped
     environment:
-      NODE_ENV: development
-      PORT: 3001
-      DB_HOST: database
-      DB_PORT: 5432
-      DB_NAME: app_database
-      DB_USER: app_user
-      DB_PASSWORD: app_password
-      JWT_SECRET: your_jwt_secret_here
-      CORS_ORIGIN: http://localhost:3000
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${BACKEND_PORT}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${POSTGRES_DB}
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      CORS_ORIGIN: ${CORS_ORIGIN}
     ports:
       - "3001:3001"
       - "9229:9229"  # Puerto para debugging
@@ -62,7 +62,7 @@ services:
     container_name: app_frontend
     restart: unless-stopped
     environment:
-      - REACT_APP_API_URL=http://localhost:3001/api
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
       - CHOKIDAR_USEPOLLING=true
       - WATCHPACK_POLLING=true
       - FAST_REFRESH=true
@@ -104,7 +104,7 @@ services:
     container_name: app_redis
     restart: unless-stopped
     ports:
-      - "6379:6379"
+      - "${REDIS_PORT}:6379"
     volumes:
       - redis_data:/data
     networks:
@@ -119,8 +119,8 @@ services:
     container_name: app_pgadmin
     restart: unless-stopped
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@example.com
-      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
       PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
     ports:
