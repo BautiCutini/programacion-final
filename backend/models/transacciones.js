@@ -35,7 +35,64 @@ const obtenerTransaccion = async (req, res) => {
   }
 };
 
+
+const obtenerBalance = async (req, res) => {
+  try {
+    const ingresos = await pool.query(
+      "SELECT COALESCE(SUM(monto),0) as total FROM transacciones WHERE tipo = 'ingreso'"
+    );
+  
+    const gastos = await pool.query(
+      "SELECT COALESCE(SUM(monto),0) as total FROM transacciones WHERE tipo = 'gasto'"
+    );
+  
+    const totalIngresos = Number(ingresos.rows[0].total);
+    const totalGastos = Number(gastos.rows[0].total);
+  
+    return res.status(200).json({
+      ingresos: totalIngresos,
+      gastos: totalGastos,
+      balance: totalIngresos - totalGastos
+    });
+  
+  } catch (error) {
+    return res.status(500).json({
+      error: 'Error al obtener balance'
+    });
+  }
+};
+
+const filtrarTransacciones = async (req, res) => {
+  try {
+    const { fecha, categoria_id } = req.query;
+  
+    let query = 'SELECT * FROM transacciones WHERE 1=1';
+    const values = [];
+  
+    if (fecha) {
+      values.push(fecha);
+      query += ` AND fecha = $${values.length}`;
+    }
+  
+    if (categoria_id) {
+      values.push(categoria_id);
+      query += ` AND categoria_id = $${values.length}`;
+    }
+  
+    const resultado = await pool.query(query, values);
+  
+    return res.status(200).json(resultado.rows);
+  
+  } catch (error) {
+    return res.status(500).json({
+      error: 'Error al filtrar transacciones'
+    });
+  }
+};
+
 module.exports = {
     crearTransaccion,
-    obtenerTransaccion
+    obtenerTransaccion,
+    obtenerBalance,
+    filtrarTransacciones
 }
