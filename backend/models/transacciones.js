@@ -69,6 +69,8 @@ const eliminarTransaccion = async (req, res) => {
   } catch (error) {
     console.error('Error al eliminar transacción:', error.message);
     return res.status(500).json({ error: error.message });
+  }
+};
 
 const obtenerBalance = async (req, res) => {
   try {
