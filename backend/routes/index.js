@@ -14,11 +14,15 @@ router.get('/health', (req, res) => {
   });
 });
 
+const transaccionesRoutes = require('./transacciones');
+router.use('/transacciones', transaccionesRoutes);
 // Rutas de autenticación
 router.use('/auth', authRoutes);
 
 // Rutas de categorías
 router.use('/categorias', categoriaRoutes);
+
+router.use('/transacciones', transaccionesRoutes);
 
 // Ruta de ejemplo
 router.get('/test', (req, res) => {
