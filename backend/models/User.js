@@ -36,9 +36,6 @@ module.exports = (sequelize) => {
     timestamps: true,
     hooks: {
       beforeCreate: async (user) => {
-        const hash = await bcrypt.hash(user.password, saltRounds = 10);
-        console.log('Hash generado:', hash);
-
         // TODO: Hashear la contraseña antes de guardar el usuario.
         // Pista: usar bcrypt.hash() con 10 rondas de salt.
       }
@@ -46,9 +43,7 @@ module.exports = (sequelize) => {
   });
 
   User.prototype.validarPassword = async function (password) {
-    const coinciden = await bcrypt.compare(password, this.password);
-    console.log("la contraseña es correcta?", coinciden);
-    return coinciden;
+    // TODO: Comparar la contraseña recibida con el hash almacenado.
     // Pista: usar bcrypt.compare()
   };
 
