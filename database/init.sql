@@ -41,3 +41,10 @@ CREATE TABLE IF NOT EXISTS transacciones (
   created_at    TIMESTAMP      NOT NULL DEFAULT NOW(),
   updated_at    TIMESTAMP      NOT NULL DEFAULT NOW()
 );
+
+-- IDICES
+CREATE INDEX IF NOT EXISTS idx_transacciones_user_id    ON transacciones(user_id);
+CREATE INDEX IF NOT EXISTS idx_transacciones_fecha      ON transacciones(fecha);
+CREATE INDEX IF NOT EXISTS idx_transacciones_tipo       ON transacciones(tipo);
+CREATE INDEX IF NOT EXISTS idx_transacciones_categoria  ON transacciones(categoria_id);
+CREATE INDEX IF NOT EXISTS idx_categorias_user_id       ON categorias(user_id);
