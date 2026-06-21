@@ -30,7 +30,8 @@ module.exports = (sequelize) => {
     },
     categoria_id: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
+      field: 'categoria_id'
     }
   }, {
     tableName: 'transacciones',
@@ -38,7 +39,11 @@ module.exports = (sequelize) => {
     updatedAt: false,
     underscored: true
   });
-
+  
+    Transaccion.associate = (models) => {
+    Transaccion.belongsTo(models.User, { foreignKey: 'userId' });
+    Transaccion.belongsTo(models.Categoria, { foreignKey: 'categoriaId' });
+  };
 
   return Transaccion;
 };

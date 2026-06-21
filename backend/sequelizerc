@@ -1,7 +1,3 @@
-// backend/.sequelizerc
-// Le dice al CLI de Sequelize dónde está cada cosa,
-// porque nuestro proyecto no usa la estructura default.
-
 const path = require('path');
 
 module.exports = {
@@ -10,3 +6,4 @@ module.exports = {
   'migrations-path': path.resolve('migrations'),
   'seeders-path': path.resolve('seeders')
 };
+""
