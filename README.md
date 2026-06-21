@@ -16,6 +16,59 @@ Desarrollado como trabajo final de la materia Programación III — UTN.
 
 ---
 
+# Levantar el Proyecto
+
+## Requisitos Previos
+
+- Docker instalado
+- Docker Compose instalado
+
+## Pasos
+
+### 1. Construir las imágenes
+
+Este paso solo es necesario la primera vez o cuando cambien las dependencias del proyecto.
+
+```bash
+docker-compose build
+```
+
+### 2. Iniciar todos los servicios
+
+Levanta los contenedores definidos en el archivo `docker-compose.yml`.
+
+```bash
+docker-compose up -d
+```
+
+### 3. Ejecutar las migraciones
+
+Crea las tablas necesarias en la base de datos.
+
+```bash
+docker-compose exec backend npx sequelize-cli db:migrate
+```
+
+### 4. Cargar datos de prueba
+
+Inserta los datos iniciales para poder probar la aplicación.
+
+```bash
+docker-compose exec backend npx sequelize-cli db:seed:all
+```
+
+## Verificar que los contenedores estén funcionando
+
+```bash
+docker ps
+```
+
+## Detener los servicios
+
+```bash
+docker-compose down
+```
+
 ## Documentacion Endpoints de la API
 
 Base URL: `http://localhost:3001/api`
@@ -102,58 +155,6 @@ Filtra transacciones por fecha o categoría.
 
 ---
 
-# Levantar el Proyecto
-
-## Requisitos Previos
-
-- Docker instalado
-- Docker Compose instalado
-
-## Pasos
-
-### 1. Construir las imágenes
-
-Este paso solo es necesario la primera vez o cuando cambien las dependencias del proyecto.
-
-```bash
-docker-compose build
-```
-
-### 2. Iniciar todos los servicios
-
-Levanta los contenedores definidos en el archivo `docker-compose.yml`.
-
-```bash
-docker-compose up -d
-```
-
-### 3. Ejecutar las migraciones
-
-Crea las tablas necesarias en la base de datos.
-
-```bash
-docker-compose exec backend npx sequelize-cli db:migrate
-```
-
-### 4. Cargar datos de prueba
-
-Inserta los datos iniciales para poder probar la aplicación.
-
-```bash
-docker-compose exec backend npx sequelize-cli db:seed:all
-```
-
-## Verificar que los contenedores estén funcionando
-
-```bash
-docker ps
-```
-
-## Detener los servicios
-
-```bash
-docker-compose down
-```
 
 
 
