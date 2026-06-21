@@ -21,7 +21,8 @@ module.exports = (sequelize) => {
       },
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      field: 'user_id'
     }
     }, {
     tableName: 'categorias',
@@ -29,6 +30,11 @@ module.exports = (sequelize) => {
     updatedAt: false,
     underscored: true
   });
+
+    Categoria.associate = (models) => {
+    Categoria.belongsTo(models.User, { foreignKey: 'userId' });
+    Categoria.hasMany(models.Transaccion, { foreignKey: 'categoriaId' });
+  };
 
   return Categoria;
 }

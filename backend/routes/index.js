@@ -15,7 +15,6 @@ router.get('/health', (req, res) => {
 });
 
 const transaccionesRoutes = require('./transacciones');
-router.use('/transacciones', transaccionesRoutes);
 // Rutas de autenticación
 router.use('/auth', authRoutes);
 

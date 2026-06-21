@@ -8,17 +8,13 @@ const {
     eliminarTransaccion,
     obtenerBalance,
     filtrarTransacciones
-} = require('../models/transacciones');
+} = require('../controllers/transaccionesController');
 
 router.post('/', crearTransaccion);
-
 router.get('/', obtenerTransaccion);
-
 router.put('/:id', actualizarTransaccion);
-
 router.delete('/:id', eliminarTransaccion);
 router.get('/balance', obtenerBalance);
-
-router.get('/filtro', filtrarTransacciones);
+router.get('/filtrar', filtrarTransacciones);
 
 module.exports = router;
