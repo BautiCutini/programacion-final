@@ -68,4 +68,5 @@ const eliminarCategoria = async (req, res) => {
     }
 };
 
+
 module.exports = { listarCategorias, crearCategoria, editarCategoria, eliminarCategoria };
