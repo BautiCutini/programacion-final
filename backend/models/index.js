@@ -20,10 +20,26 @@ const sequelize = new Sequelize(
 );
 
 const UserModel = require('./User');
+const CategoriaModel = require('./Categoria');
+const TransaccionModel = require('./Transaccion');
+ 
 const User = UserModel(sequelize);
-
+const Categoria = CategoriaModel(sequelize);
+const Transaccion = TransaccionModel(sequelize);
+ 
+const models = { User, Categoria, Transaccion };
+ 
+// Registrar las asociaciones entre modelos
+Object.values(models).forEach((model) => {
+  if (model.associate) {
+    model.associate(models);
+  }
+});
+ 
 module.exports = {
   sequelize,
   Sequelize,
-  User
+  User,
+  Categoria,
+  Transaccion
 };
