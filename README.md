@@ -27,14 +27,28 @@ Base URL: `http://localhost:3001/api`
 #### GET /categorias
 Lista todas las categorías registradas.
 
+![GET categorias](./docs/getCategorias.png)
+
+---
+
 #### POST /categorias
 Crea una nueva categoría.
+
+![POST categorias](./docs/postCategorias.png)
+
+---
 
 #### PUT /categorias/:id
 Edita una categoría existente.
 
+![PUT categorias](./docs/putCategorias.png)
+
+---
+
 #### DELETE /categorias/:id
 Elimina una categoría por su id.
+
+![DELETE categorias](./docs/deleteCategorias.png)
 
 ---
 
@@ -43,20 +57,50 @@ Elimina una categoría por su id.
 #### GET /transacciones
 Lista todas las transacciones.
 
+![GET transacciones](./docs/getTransacciones.png)
+
+---
+
 #### POST /transacciones
 Crea una nueva transacción.
+
+![POST transacciones](./docs/postTransacciones.png)
+
+---
 
 #### PUT /transacciones/:id
 Actualiza una transacción existente.
 
+![PUT transacciones](./docs/putTransacciones.png)
+
+---
+
 #### DELETE /transacciones/:id
 Elimina una transacción por su id.
+
+![DELETE transacciones](./docs/deleteTransacciones.png)
+
+---
 
 #### GET /transacciones/balance
 Devuelve el balance actual (ingresos, gastos y diferencia).
 
+![GET balance](./docs/getBalance.png)
+
+---
+
 #### GET /transacciones/filtro
 Filtra transacciones por fecha o categoría.
+
+**Por categoría:** `/filtrar?categoria_id=1`
+
+![filtro por categoria](./docs/getFiltroPorCategoria.png)
+
+**Por fecha:** `/filtrar?fecha=2026-06-01`
+
+![filtro por fecha](./docs/getFiltroPorFecha.png)
+
+---
 
 # Levantar el Proyecto
 
