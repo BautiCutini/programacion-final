@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 import MainActions from './components/MainActions';
+import Footer from './components/Footer';
 
 function App() {
   const [statusMessage, setStatusMessage] = useState('Selecciona una acción para comenzar.');
 
-  
-  
+  const handleVerBalance = () => {
+    setStatusMessage('Mostrando balance...');
+    // Aquí iría la lógica para obtener y mostrar el balance
+  };
 
   return (
     <div className="App">
@@ -19,8 +22,7 @@ function App() {
         </section>
 
         <MainActions
-          
-          
+          VerBalance={handleVerBalance}
         />
 
         <section className="status-panel">
@@ -28,6 +30,7 @@ function App() {
           <p>{statusMessage}</p>
         </section>
       </main>
+      <Footer />
     </div>
   );
 }
