@@ -15,7 +15,7 @@ function App() {
       <main className="App-main">
         <section className="hero-section">
           <h1>¡Bienvenido a tu controlador de gastos personal!</h1>
-          <p>Aca vas a manejar tu dinero de una forma mas segura y precisa.</p>
+          <p>Aca vas a manejar tu dinero de una forma mas segura, precisa y controlada.</p>
         </section>
 
         <MainActions
