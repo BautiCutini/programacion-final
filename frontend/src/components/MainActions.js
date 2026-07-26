@@ -1,7 +1,7 @@
 import React from 'react';
 import './MainActions.css';
 
-function MainActions({ AgregarCategoria, EditarCategoria, AgregarTransaccion, VerTransacciones, EliminarTransaccion, Veringresos, RegistrarIngreso, VerBalance }) {
+function MainActions({ AgregarCategoria, EditarCategoria, VerCategorias, EliminarCategoria, AgregarTransaccion, VerTransacciones, EliminarTransaccion, Veringresos, RegistrarIngreso, VerBalance }) {
   return (
     <section className="main-actions">
       <div className="actions-header">
@@ -18,6 +18,12 @@ function MainActions({ AgregarCategoria, EditarCategoria, AgregarTransaccion, Ve
         </button>
         <button type="button" className="action-button" onClick={EditarCategoria}>
           Editar categoría
+        </button>
+        <button type="button" className="action-button" onClick={VerCategorias}>
+          Ver categorías
+        </button>
+        <button type="button" className="action-button" onClick={EliminarCategoria}>
+          Eliminar categoría
         </button>
         <button type="button" className="action-button" onClick={AgregarTransaccion}>
           Agregar transacción

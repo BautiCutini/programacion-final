@@ -4,12 +4,14 @@ import NavBar from './components/NavBar';
 import MainActions from './components/MainActions';
 import Footer from './components/Footer';
 import TransaccionesPage from './components/TransaccionesPage';
+import CategoriasPage from './components/CategoriasPage';
 import Login from './components/Login';
 import Registro from './components/Registro';
 
 function App() {
   const [seccionActiva, setSeccionActiva] = useState(null);
   const [modoTransaccion, setModoTransaccion] = useState('listar');
+  const [modoCategoria, setModoCategoria] = useState('listar');
   const [statusMessage, setStatusMessage] = useState('Selecciona una acción para comenzar.');
 
   
