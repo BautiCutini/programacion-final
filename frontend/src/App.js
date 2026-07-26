@@ -4,12 +4,14 @@ import NavBar from './components/NavBar';
 import MainActions from './components/MainActions';
 import Footer from './components/Footer';
 import TransaccionesPage from './components/TransaccionesPage';
+import CategoriasPage from './components/CategoriasPage';
 import Login from './components/Login';
 import Registro from './components/Registro';
 
 function App() {
   const [seccionActiva, setSeccionActiva] = useState(null);
   const [modoTransaccion, setModoTransaccion] = useState('listar');
+  const [modoCategoria, setModoCategoria] = useState('listar');
   const [statusMessage, setStatusMessage] = useState('Selecciona una acción para comenzar.');
 
   
@@ -27,6 +29,11 @@ function App() {
     abrirTransacciones('balance', 'Mostrando balance...');
   };
 
+  const abrirCategorias = (modo, mensaje) => {
+    setSeccionActiva('categorias');
+    setModoCategoria(modo);
+    setStatusMessage(mensaje);
+  };
   
   const handleAuthExitoso = (userData) => {
     setUsuario(userData);
@@ -66,6 +73,10 @@ function App() {
               AgregarTransaccion={() => abrirTransacciones('crear', 'Completa el formulario para registrar una transaccion.')}
               VerTransacciones={() => abrirTransacciones('listar', 'Mostrando el historial de transacciones.')}
               EliminarTransaccion={() => abrirTransacciones('eliminar', 'Elige una transaccion del historial para eliminarla.')}
+              AgregarCategoria={() => abrirCategorias('crear', 'Completa el formulario para crear una categoría.')}
+              EditarCategoria={() => abrirCategorias('editar', 'Elige una categoría para editarla.')}
+              VerCategorias={() => abrirCategorias('listar', 'Mostrando tus categorías.')}
+              EliminarCategoria={() => abrirCategorias('eliminar', 'Elige una categoría para eliminarla.')}
             />
 
             <section className="status-panel">
@@ -75,6 +86,9 @@ function App() {
 
             {seccionActiva === 'transacciones' && (
               <TransaccionesPage modo={modoTransaccion} usuario={usuario} />
+            )}
+            {seccionActiva === 'categorias' && (
+              <CategoriasPage modo={modoCategoria} usuario={usuario} />
             )}
           </>
         )}
