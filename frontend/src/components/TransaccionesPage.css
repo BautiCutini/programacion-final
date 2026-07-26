@@ -1,0 +1,179 @@
+.transacciones-page {
+  max-width: 820px;
+  margin: 24px auto;
+  text-align: left;
+}
+
+.transacciones-title {
+  margin-bottom: 18px;
+}
+
+.transacciones-title h1,
+.transaccion-form h2,
+.historial-header h2 {
+  margin: 0;
+  color: #1f2f5b;
+}
+
+.transacciones-title p {
+  margin: 6px 0 0;
+  color: #64748b;
+}
+
+.balance-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.balance-card,
+.transaccion-form,
+.table-wrapper {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 18px rgba(15, 29, 58, 0.08);
+}
+
+.balance-card {
+  padding: 22px;
+  border-left: 5px solid #2755b0;
+}
+
+.balance-card span {
+  display: block;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.balance-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.5rem;
+  color: #1f2f5b;
+}
+
+.income-card { border-color: #28a745; }
+.expense-card { border-color: #dc3545; }
+.total-card { border-color: #2755b0; }
+
+.transaccion-form {
+  padding: 26px;
+}
+
+.transaccion-form h2 {
+  margin-bottom: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.form-grid input,
+.form-grid select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  color: #334155;
+  font: inherit;
+  outline: none;
+}
+
+.form-grid input:focus,
+.form-grid select:focus {
+  border-color: #2755b0;
+  box-shadow: 0 0 0 3px rgba(39, 85, 176, 0.15);
+}
+
+.save-button,
+.delete-button {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.save-button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #2755b0;
+  color: #fff;
+}
+
+.save-button:hover { background: #163f8c; }
+
+.historial-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.historial-header span {
+  padding: 6px 10px;
+  border-radius: 20px;
+  color: #2755b0;
+  background: #e9efff;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.table-wrapper { overflow-x: auto; }
+
+.transacciones-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 620px;
+}
+
+.transacciones-table th,
+.transacciones-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.transacciones-table th {
+  background: #f6f8fc;
+  color: #475569;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.transacciones-table tr:last-child td { border-bottom: 0; }
+.transacciones-table tbody tr:hover { background: #f8faff; }
+
+.tipo-badge {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.tipo-badge.ingreso,
+.monto.ingreso { color: #16803a; }
+.tipo-badge.ingreso { background: #e8f7ed; }
+.tipo-badge.gasto,
+.monto.gasto { color: #c52c3c; }
+.tipo-badge.gasto { background: #fdebed; }
+.monto { font-weight: 700; }
+
+.delete-button {
+  padding: 8px 12px;
+  background: #fff0f1;
+  color: #c52c3c;
+}
+
+.delete-button:hover { background: #fde0e3; }
+
+@media (max-width: 640px) {
+  .balance-cards,
+  .form-grid { grid-template-columns: 1fr; }
+
+  .transacciones-page { margin: 20px 0; }
+  .transaccion-form { padding: 20px; }
+}
