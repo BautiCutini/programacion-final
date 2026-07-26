@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './TransaccionesPage.css';
 
-export default function TransaccionesPage({ modo }) {
+export default function TransaccionesPage({ modo , usuario }) {
   const [transacciones, setTransacciones] = useState([]);
   const [balance, setBalance] = useState(null);
   const [form, setForm] = useState({
@@ -38,7 +38,7 @@ export default function TransaccionesPage({ modo }) {
       ...form,
       monto: Number(form.monto),
       categoria_id: Number(form.categoria_id),
-      user_id: 1,
+      user_id: usuario.id,
     });
 
     setForm({

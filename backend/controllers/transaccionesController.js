@@ -2,13 +2,13 @@ const { Transaccion } = require('../models');
 
 const crearTransaccion = async (req, res) => {
   try {
-    const { monto, tipo, descripcion, user_id, fecha, categoria_id } = req.body;
+    const { monto, tipo, descripcion, fecha, categoria_id } = req.body;
 
     const nuevaTransaccion = await Transaccion.create({
       monto,
       tipo,
       descripcion,
-      user_id,
+      user_id: req.user.id,
       fecha,
       categoria_id
     });
@@ -22,7 +22,9 @@ const crearTransaccion = async (req, res) => {
 
 const obtenerTransaccion = async (req, res) => {
   try {
-    const transacciones = await Transaccion.findAll();
+    const transacciones = await Transaccion.findAll({
+      where: { user_id: req.user.id }
+    });
     return res.status(200).json(transacciones);
   } catch (error) {
     return res.status(500).json({ error: 'Error al obtener transacciones' });
@@ -76,8 +78,12 @@ const eliminarTransaccion = async (req, res) => {
 
 const obtenerBalance = async (req, res) => {
   try {
-    const totalIngresos = await Transaccion.sum('monto', { where: { tipo: 'ingreso' } });
-    const totalGastos = await Transaccion.sum('monto', { where: { tipo: 'gasto' } });
+    const totalIngresos = await Transaccion.sum('monto', {
+      where: { tipo: 'ingreso', user_id: req.user.id }
+    });
+    const totalGastos = await Transaccion.sum('monto', {
+      where: { tipo: 'gasto', user_id: req.user.id }
+    });
 
     const ingresos = totalIngresos || 0;
     const gastos = totalGastos || 0;
@@ -97,7 +103,7 @@ const filtrarTransacciones = async (req, res) => {
   try {
     const { fecha, categoria_id } = req.query;
 
-    const where = {};
+    const where = { user_id: req.user.id };
 
     if (fecha) {
       where.fecha = fecha;
