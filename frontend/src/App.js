@@ -29,6 +29,11 @@ function App() {
     abrirTransacciones('balance', 'Mostrando balance...');
   };
 
+  const abrirCategorias = (modo, mensaje) => {
+    setSeccionActiva('categorias');
+    setModoCategoria(modo);
+    setStatusMessage(mensaje);
+  };
   
   const handleAuthExitoso = (userData) => {
     setUsuario(userData);
@@ -68,6 +73,10 @@ function App() {
               AgregarTransaccion={() => abrirTransacciones('crear', 'Completa el formulario para registrar una transaccion.')}
               VerTransacciones={() => abrirTransacciones('listar', 'Mostrando el historial de transacciones.')}
               EliminarTransaccion={() => abrirTransacciones('eliminar', 'Elige una transaccion del historial para eliminarla.')}
+              AgregarCategoria={() => abrirCategorias('crear', 'Completa el formulario para crear una categoría.')}
+              EditarCategoria={() => abrirCategorias('editar', 'Elige una categoría para editarla.')}
+              VerCategorias={() => abrirCategorias('listar', 'Mostrando tus categorías.')}
+              EliminarCategoria={() => abrirCategorias('eliminar', 'Elige una categoría para eliminarla.')}
             />
 
             <section className="status-panel">
@@ -77,6 +86,9 @@ function App() {
 
             {seccionActiva === 'transacciones' && (
               <TransaccionesPage modo={modoTransaccion} usuario={usuario} />
+            )}
+            {seccionActiva === 'categorias' && (
+              <CategoriasPage modo={modoCategoria} usuario={usuario} />
             )}
           </>
         )}
