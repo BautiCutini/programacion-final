@@ -14,13 +14,15 @@ export default function TransaccionesPage({ modo , usuario }) {
   });
 
   const cargarDatos = async () => {
-    const [transaccionesRes, balanceRes] = await Promise.all([
+    const [transaccionesRes, balanceRes, categoriasRes] = await Promise.all([
       axios.get('/api/transacciones'),
       axios.get('/api/transacciones/balance'),
+      axios.get('/api/categorias'),
     ]);
 
     setTransacciones(transaccionesRes.data);
     setBalance(balanceRes.data);
+    setCategorias(categoriasRes.data);
   };
 
   useEffect(() => {
@@ -56,6 +58,21 @@ export default function TransaccionesPage({ modo , usuario }) {
     await axios.delete(`/api/transacciones/${id}`);
     cargarDatos();
   };
+  
+  const filtrarPorCategoria = async () => {
+  if (!categoriaFiltro) {
+    cargarDatos();
+    return;
+  }
+
+  const res = await axios.get('/api/transacciones/filtrar', {
+    params: {
+      categoria_id: categoriaFiltro,
+    },
+  });
+
+  setTransacciones(res.data);
+};
 
   return (
     <section className="transacciones-page">
@@ -63,7 +80,6 @@ export default function TransaccionesPage({ modo , usuario }) {
         <h1>Transacciones</h1>
         <p>Administra tus ingresos y gastos personales.</p>
       </div>
-
       {modo === 'balance' && balance && (
         <div className="balance-cards">
           <article className="balance-card income-card">
@@ -127,6 +143,22 @@ export default function TransaccionesPage({ modo , usuario }) {
       </form>}
 
       {(modo === 'listar' || modo === 'eliminar') && <>
+      <div className="filtro-categoria">
+    <select
+      value={categoriaFiltro}
+      onChange={(e) => setCategoriaFiltro(e.target.value)}
+    >
+    <option value="">Todas las categorías</option>
+      {categorias.map((categoria) => (
+        <option key={categoria.id} value={categoria.id}>
+        {categoria.nombre}
+        </option>
+        ))}
+    </select>
+        <button onClick={filtrarPorCategoria}>
+          Filtrar
+        </button>
+      </div>
       <div className="historial-header">
         <h2>Historial de transacciones</h2>
         <span>{transacciones.length} registradas</span>
@@ -165,4 +197,7 @@ export default function TransaccionesPage({ modo , usuario }) {
       </>}
     </section>
   );
+  const [categorias, setCategorias] = useState([]);
+  const [categoriaFiltro, setCategoriaFiltro] = useState('');
+
 }
