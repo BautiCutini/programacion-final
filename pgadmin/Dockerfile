@@ -13,4 +13,4 @@ RUN mkdir -p /var/lib/pgadmin && \
 COPY servers.json /pgadmin4/servers.json
 
 # Cambiar de vuelta al usuario pgAdmin
-USER pgadmin 
+USER pgadmin
