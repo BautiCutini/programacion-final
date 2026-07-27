@@ -34,6 +34,7 @@ module.exports = (sequelize) => {
   }, {
     tableName: 'users',
     timestamps: true,
+    underscored: true,
     hooks: {
       beforeCreate: async (user) => {
         // TODO: Hashear la contraseña antes de guardar el usuario.
