@@ -5,6 +5,8 @@ import './TransaccionesPage.css';
 export default function TransaccionesPage({ modo , usuario }) {
   const [transacciones, setTransacciones] = useState([]);
   const [balance, setBalance] = useState(null);
+  const [categorias, setCategorias] = useState([]);
+  const [categoriaFiltro, setCategoriaFiltro] = useState('');
   const [form, setForm] = useState({
     monto: '',
     tipo: 'gasto',
@@ -197,7 +199,5 @@ export default function TransaccionesPage({ modo , usuario }) {
       </>}
     </section>
   );
-  const [categorias, setCategorias] = useState([]);
-  const [categoriaFiltro, setCategoriaFiltro] = useState('');
-
+  
 }
